@@ -17,6 +17,17 @@ public Plugin myinfo =
 	url = "brysonscorner.info"
 };
 
+public void OnPluginStart()
+{
+    for(int i = 1; i <= MaxClients; i++)
+    {
+        if(IsClientInGame(i))
+        {
+            OnClientPutInServer(i);
+        }
+    }
+}
+
 public void OnClientPutInServer(int client) {
 	SDKHook(client, SDKHook_WeaponCanUse, BlockPickup);
 }
@@ -24,9 +35,9 @@ public void OnClientPutInServer(int client) {
 public Action BlockPickup(int client, int weapon) {
 	char weaponClass[64];
 	GetEntityClassname(weapon, weaponClass, sizeof(weaponClass));
-    if (StrEqual(weaponClass, "tf_weapon_pistol_akimbo")) // Replace me with weapon you want removed lole
+    if (StrEqual(weaponClass, "tf_weapon_pistol_akimbo")) 
     {
-		RemoveEdict(weapon);
+		AcceptEntityInput(weapon, "Kill");
 		return Plugin_Handled;
     }
 	return Plugin_Continue;
