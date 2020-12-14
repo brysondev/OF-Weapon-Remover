@@ -10,3 +10,5 @@ public Action BlockPickup(int client, int weapon) {
   ...
 ```
 You need `<sdktools>` and `<sdkhooks>` to compile.
+
+(Also [Scag's Tools](https://github.com/Scags/Open-Fortress-Tools))
